@@ -17,6 +17,8 @@ r = W'*h;
 % Sparsity Cost
 K = sqrt(params.epsilon + h.^2);
 sparsity_cost = params.lambda * sum(sum(K));
+
+
 K = 1./K;
 
 % Reconstruction Loss and Back Prop
