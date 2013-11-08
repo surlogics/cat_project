@@ -1,26 +1,23 @@
-function learnDictionary(X)
-
+function learnDictionnary(X)
+% Each column corresponds to a feature.
+% So that, size(X,1)= dim of features
+% and size(X,2)= num of features
 
 %% Note: This sample code requires minFunc to run.
 %        But you can use softICACost.m with your own optimizer of choice.
-clear all;
-addpath ~/work/RNN/minFunc/   % this should point to minFunc
+
+addpath ../minFunc_2012/   % this should point to minFunc
                               % http://www.di.ens.fr/~mschmidt/Software/minFunc.html
                               % minFunc 2009 seems to work well
 %% Load and configure a training dataset
-global params;
-params.m=20000;                 % num patches
-params.patchWidth=16;           % width of a patch
-params.n=params.patchWidth^2;   % dimensionality of input
 
-% load the patch dataset
-load hyv_patches_16.mat
+params.m=size(X,2);                 % num patches
+params.n=size(X,1);
 
-% for best results patches should be whitened (i.e., patches*patches' ~=
-% I)
-% [patches, mean_patch, V] = preprocess(patches)
-m = sqrt(sum(patches.^2) + (1e-8));
-x = bsxfunwrap(@rdivide,patches,m);
+
+m = sqrt(sum(patches.^2));
+m(m==0)=1;% avoid 0 issues
+X = bsxfunwrap(@rdivide,X,m);
 
 %% Run the optimization
 

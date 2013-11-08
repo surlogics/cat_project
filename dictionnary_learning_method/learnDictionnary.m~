@@ -1,15 +1,15 @@
 function learnDictionary(X)
-
+% Each column corresponds to a feature
 
 %% Note: This sample code requires minFunc to run.
 %        But you can use softICACost.m with your own optimizer of choice.
-clear all;
+
 addpath ~/work/RNN/minFunc/   % this should point to minFunc
                               % http://www.di.ens.fr/~mschmidt/Software/minFunc.html
                               % minFunc 2009 seems to work well
 %% Load and configure a training dataset
-global params;
-params.m=20000;                 % num patches
+
+params.m=size(X,1);                 % num patches
 params.patchWidth=16;           % width of a patch
 params.n=params.patchWidth^2;   % dimensionality of input
 

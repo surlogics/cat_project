@@ -1,4 +1,7 @@
 function [cost,grad] = softICACost(theta, x, params)
+% This function has to return cost and gradient according to a parameter
+% input x.
+
 
 % unpack weight matrix
 W = reshape(theta, params.numFeatures, params.n);
