@@ -3,7 +3,7 @@ function [optDic,cost]=LearnDict(X, lambda, numOut)
 % So that, size(X,1)= dim of features
 % and size(X,2)= num of features
 
-addpath('minFunc_2012/minFunc')%genpath('./rica/'));   % this should point to minFunc
+addpath(genpath('./minFunc_2012/'));%genpath('./rica/'));   % this should point to minFunc
                               % http://www.di.ens.fr/~mschmidt/Software/minFunc.html
                               % minFunc 2009 seems to work well --- Note :
                               % we used minFunc 2012, prying it will work.
@@ -35,9 +35,9 @@ randDic = randDic ./ repmat(sqrt(sum(randDic.^2,2)), 1, size(randDic,2));
 randDic = randDic(:);
 
 % optimize
-%[optDic, cost, exitflag] = minFunc( @(dic) softICACost(dic, X, params), randDic, options);   % Use x or xw 
-options.GradObj = 'on';
-[optDic, cost, exitflag] = fminunc( @(dic) softICACost(dic, X, params),randDic,options);   % Use x or xw 
+[optDic, cost, exitflag] = minFunc( @(dic) softICACost(dic, X, params), randDic, options);   % Use x or xw 
+%options.GradObj = 'on';
+%[optDic, cost, exitflag] = fminunc( @(dic) softICACost(dic, X, params),randDic,options);   % Use x or xw 
 
 % display result
 optDic = reshape(optDic, params.numFeatures, params.n);
