@@ -3,7 +3,7 @@ function [optDic,cost]=LearnDict(X, lambda, numOut)
 % So that, size(X,1)= dim of features
 % and size(X,2)= num of features
 
-addpath(genpath('./rica/'));   % this should point to minFunc
+addpath('minFunc_2012/minFunc')%genpath('./rica/'));   % this should point to minFunc
                               % http://www.di.ens.fr/~mschmidt/Software/minFunc.html
                               % minFunc 2009 seems to work well --- Note :
                               % we used minFunc 2012, prying it will work.
